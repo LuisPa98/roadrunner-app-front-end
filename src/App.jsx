@@ -21,6 +21,7 @@ function App() {
   useEffect(() => {
     const fetchUser = async () => {
       const userData = await verifyUser();
+      console.log(userData)
       if (userData){
         setUser(userData.user)
         setProfile(userData.profile)
@@ -42,7 +43,7 @@ function App() {
         <Route path="/profile" element={<Layout><Profile /></Layout>} />
         <Route path="/update-account" element={<Layout><EditUser /></Layout>} />
         <Route path="/feed" element={<Layout><Feed /></Layout>} />
-        <Route path="/run" element={<Layout><Run /></Layout>} />
+        <Route path="/run" element={<Layout><Run profile={profile}/></Layout>} />
         <Route path="/search" element={<Layout><Search /></Layout>} />
         <Route path="/follows/:profileId" element={<Layout><Follows /></Layout>} />
       </Routes>
