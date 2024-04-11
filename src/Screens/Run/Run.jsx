@@ -5,17 +5,11 @@ import polyline from "@mapbox/polyline";
 import * as turf from "@turf/turf";
 import "./run.css";
 
-function Run() {
+function Run({ profile }) {
   mapboxgl.accessToken = process.env.REACT_APP_TOKEN;
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const watchIdRef = useRef(null);
-
-  const [runData, setRunData] = useState({
-    distance: 0,
-    timetotal: 0,
-    path: "",
-  });
 
   const [route, setRoute] = useState([]);
   const [current, setCurrent] = useState([]);
@@ -26,7 +20,6 @@ function Run() {
   const [time, setTime] = useState(0);
   const [start, setStart] = useState(false);
   const [runEnded, setRunEnded] = useState(false);
-  const [imageUrl, setImageUrl] = useState(null); //Will hold the state for the run image
 
   //Will create the map when the user selects the run option
   const initializeMap = ({ latitude, longitude }) => {
@@ -278,9 +271,7 @@ function Run() {
 
           const path = `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s-a+9ed4bd(${uniqueRoute[0]}),pin-s-b+000(${endingCoordinateStr}),path-5+f44-0.5(${pathRoute})/auto/500x300?access_token=${process.env.REACT_APP_TOKEN}`;
 
-          console.log(path);
-
-          setRunData({
+          await createRun(profile.user, {
             distance: calculatedDistance,
             timetotal: time,
             path: path,
