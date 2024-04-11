@@ -2,11 +2,8 @@ import axios from "axios";
 
 const getToken = () => {
   return new Promise((resolve) => {
-    if (localStorage.getItem("token")) {
-      resolve(`Bearer ${localStorage.getItem("token")}`);
-    } else {
-      resolve(null)
-    }
+    const token = localStorage.getItem("token");
+    resolve(token ? `Bearer ${token}` : null);
   });
 };
 
@@ -14,7 +11,7 @@ const api = axios.create({
   baseURL:
     process.env.NODE_ENV === "production"
     ? "Add Heroku Link Here"
-    : "http://localhost:3017/api",
+    : "http://localhost:8000",
   })
 
   api.interceptors.request.use(
