@@ -1,39 +1,53 @@
 import { useEffect, useRef, useState } from "react";
+import { createRun } from "../../Services/run";
 import mapboxgl from "mapbox-gl";
+import polyline from "@mapbox/polyline";
 import * as turf from "@turf/turf";
 import "./run.css";
 
-const token =
-  "pk.eyJ1IjoiamxvcGV6MDAwMSIsImEiOiJjbHVxNDNkdmkwd3AzMm1wYnZjbHpsNHlwIn0.MLnPlYU-ZjaYBfR1BRHMrg";
-
 function Run() {
-  mapboxgl.accessToken = token;
+  mapboxgl.accessToken = process.env.REACT_APP_TOKEN;
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const watchIdRef = useRef(null);
+
+  const [runData, setRunData] = useState({
+    distance: 0,
+    timetotal: 0,
+    path: "",
+  });
+
   const [route, setRoute] = useState([]);
   const [current, setCurrent] = useState([]);
+
+  const [startingCoordinate, setStartingCoordinate] = useState([]);
+
   const [distance, setDistance] = useState(0);
   const [time, setTime] = useState(0);
   const [start, setStart] = useState(false);
+  const [runEnded, setRunEnded] = useState(false);
+  const [imageUrl, setImageUrl] = useState(null); //Will hold the state for the run image
 
+  //Will create the map when the user selects the run option
   const initializeMap = ({ latitude, longitude }) => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: "mapbox://styles/mapbox/streets-v12",
-      center: [-157.8294, 21.2762],
+      center: [-80.1301, 25.7907],
       zoom: 15,
     });
 
     mapRef.current = map;
 
+    //Create a fly animation from the starting coordinates to your current coordinate
     map.on("load", () => {
       map.flyTo({
         center: [longitude, latitude],
         essential: true,
-        speed: 2,
+        speed: 3, //Speed at which the animation transition
       });
-      // Add a layer for a single point
+
+      // Creates a dot to signify where you currently are based on your current coordinates
       map.addLayer({
         id: "point",
         type: "circle",
@@ -97,21 +111,32 @@ function Run() {
     });
   };
 
+  //Render the get currentPosition function
   useEffect(() => {
+    getCurrentPosition();
+  }, []);
+
+  const getCurrentPosition = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
+        setStartingCoordinate([longitude, latitude]);
         initializeMap({ latitude, longitude });
       },
       () => {
         console.error("Unable to retrieve your location");
       }
     );
-  }, []);
+  };
 
   useEffect(() => {
-    let interval = null;
+    const clearTiming = handleSettingTimer();
+    return clearTiming;
+  }, [start]);
 
+  //Responsible for setting the timer and stoping the timer.
+  const handleSettingTimer = () => {
+    let interval = null;
     if (start) {
       interval = setInterval(() => {
         setTime((prevTime) => prevTime + 10);
@@ -119,9 +144,8 @@ function Run() {
     } else {
       clearInterval(interval);
     }
-
     return () => clearInterval(interval);
-  }, [start]);
+  };
 
   const onStartRun = () => {
     console.log("start");
@@ -172,11 +196,6 @@ function Run() {
     }
   };
 
-  const handleStart = () => {
-    setStart(true);
-    onStartRun();
-  };
-
   const onEndRun = async () => {
     console.log("end");
     navigator.geolocation.clearWatch(watchIdRef.current);
@@ -193,59 +212,122 @@ function Run() {
 
     try {
       const position = await fetchCurrentLocation();
-      const { latitude, longitude } = position.coords;
-      const updatedRoute = [...route, [longitude, latitude]];
-      setRoute(updatedRoute); // Update the route state
+      if (position) {
+        const { latitude, longitude } = position.coords;
+        const updatedRoute = [...route, [longitude, latitude]];
+        const endingCoordinateStr = `${longitude},${latitude}`;
 
-      //circe to determine where you stoped running
-      // Circle to determine where you stopped running
-      if (mapRef.current) {
-        mapRef.current.addLayer({
-          id: "end-point",
-          type: "circle",
-          source: {
-            type: "geojson",
-            data: {
-              type: "FeatureCollection",
-              features: [
-                {
-                  type: "Feature",
-                  properties: {},
-                  geometry: {
-                    type: "Point",
-                    coordinates: [longitude, latitude],
+        // Remove duplicate coordinates
+        const uniqueRoute = updatedRoute.filter(
+          (coords, index, self) =>
+            index ===
+            self.findIndex((t) => t[0] === coords[0] && t[1] === coords[1])
+        );
+
+        setRoute(uniqueRoute); // Update the route state with unique coordinates
+
+        // Circle to determine where you stopped running
+        if (mapRef.current) {
+          mapRef.current.addLayer({
+            id: "end-point",
+            type: "circle",
+            source: {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: [
+                  {
+                    type: "Feature",
+                    properties: {},
+                    geometry: {
+                      type: "Point",
+                      coordinates: [longitude, latitude],
+                    },
                   },
-                },
-              ],
+                ],
+              },
             },
-          },
-          paint: {
-            "circle-radius": 10,
-            "circle-color": "#F1600D",
-          },
-        });
-      }
+            paint: {
+              "circle-radius": 10,
+              "circle-color": "#F1600D",
+            },
+          });
+        }
 
-      if (mapRef.current && updatedRoute.length) {
-        const lineString = turf.lineString(updatedRoute);
-        mapRef.current.getSource("geojson").setData({
-          type: "FeatureCollection",
-          features: [lineString],
-        });
-        const calculatedDistance = turf.length(lineString, {
-          units: "kilometers",
-        });
-        setDistance(calculatedDistance);
+        if (mapRef.current) {
+          // addEndPointToMap(mapRef.current, longitude, latitude);
+          const lineString = turf.lineString(updatedRoute);
+          mapRef.current.getSource("geojson").setData({
+            type: "FeatureCollection",
+            features: [lineString],
+          });
+          const calculatedDistance = turf.length(lineString, {
+            units: "kilometers",
+          });
+          setDistance(calculatedDistance);
+
+          console.log("this is the route" + updatedRoute);
+
+          const pathRoute = polyline.fromGeoJSON({
+            type: "Feature",
+            geometry: {
+              type: "LineString",
+              coordinates: uniqueRoute,
+            },
+          });
+
+          const path = `https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s-a+9ed4bd(${uniqueRoute[0]}),pin-s-b+000(${endingCoordinateStr}),path-5+f44-0.5(${pathRoute})/auto/500x300?access_token=${process.env.REACT_APP_TOKEN}`;
+
+          console.log(path);
+
+          setRunData({
+            distance: calculatedDistance,
+            timetotal: time,
+            path: path,
+          });
+        }
       }
     } catch (error) {
       console.error("Unable to retrieve your location", error);
-      // Prompt the user for manual retry or handle using the last known location
     }
   };
 
   const handleStop = () => {
     setStart(false);
     onEndRun();
+    setRunEnded(true);
+  };
+
+  const handleStart = () => {
+    setStart(true);
+    onStartRun();
+    setRunEnded(false);
+  };
+
+  const handleAnotherRun = () => {
+    // Resetting the necessary state to start another run
+    setTime(0); // Reset the time
+    setDistance(0); // Reset the distance
+    setRoute([]); // Reset the route
+    setCurrent([]); // Reset the current position if necessary
+    setStart(false); // Stop the run
+    setRunEnded(false); // Indicate that a new run can start
+    // Remove existing map instance if it exists
+    if (mapRef.current) {
+      mapRef.current.remove();
+      mapRef.current = null;
+    }
+
+    // Reinitialize the map
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        initializeMap({ latitude, longitude });
+      },
+      () => {
+        console.error("Unable to retrieve your location");
+      }
+    );
   };
 
   return (
@@ -256,34 +338,41 @@ function Run() {
         ref={mapContainerRef}
         style={{ width: "100%", height: "400px" }}
       ></div>
+      <h1>
+        <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
+        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+        <span>{("0" + ((time / 10) % 1000)).slice(-2)}</span>
+      </h1>
+      <div>Total distance: {distance.toFixed(2)} km</div>
+
       <div>
-        {!start ? (
+        {!start && !runEnded && (
           <div>
             <button className="stopwatch-button" onClick={() => handleStart()}>
-              Prove it.
+              PROVE IT
             </button>
           </div>
-        ) : (
+        )}
+
+        {/* Show stop button only if started */}
+        {start && (
           <div>
-            <h1>
-              <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-              <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-              <span>{("0" + ((time / 10) % 1000)).slice(-2)}</span>
-            </h1>
-            <div>Total distance: {distance.toFixed(2)} km</div>
-            <button onClick={() => handleStop()}>Giving up already?</button>
+            <button onClick={handleStop}>Giving up already?</button>
           </div>
         )}
-      </div>
-      <div>
-        <button
-          onClick={() => {
-            setTime(0);
-            setStart(false);
-          }}
-        >
-          Do a new run.
-        </button>
+
+        {/* Show another run button only if ended */}
+        {runEnded && (
+          <div>
+            <button
+              onClick={() => {
+                handleAnotherRun();
+              }}
+            >
+              ANOTHER RUN?
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
