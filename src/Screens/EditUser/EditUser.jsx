@@ -30,7 +30,7 @@ function EditUser({ profile }) {
         last_name: updatedUser.last_name,
         username: updatedUser.username,
       });
-      navigate("/profile");
+      navigate(`/profile/${profile.user}`);
     } catch (error) {
       console.error(error);
       setUpdatedUser({
