@@ -1,1 +1,19 @@
-import api from "./apiConfig";
+import api from "./apiConfig.js";
+
+export const editUser = async (profileId, updatedUserData) => {
+  try {
+    const resp = await api.patch(`/profile/${profileId}/`, updatedUserData);
+    return resp.data;
+  } catch (error) {
+    console.error("Error updating user: ", error);
+  }
+};
+
+export const deleteUser = async (profileId) => {
+  try {
+    const resp = await api.delete(`/profile/${profileId}/`);
+    return resp.data;
+  } catch (error) {
+    console.error("Error deleting user: ", error);
+  }
+};
