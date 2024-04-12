@@ -38,7 +38,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<LogIn setUser={setUser} setProfile={setProfile}/>} />
-        <Route path="/sign-up" element={<SignUp setuser={setUser} setProfile={setProfile} />} />
+        <Route path="/sign-up" element={<SignUp setUser={setUser} setProfile={setProfile} />} />
         <Route path="/sign-out" element={<SignOut />}/>
         <Route path="/profile/:profileId" element={<Layout><Profile /></Layout>} />
         <Route path="/update-account" element={<Layout><EditUser profile={profile} /></Layout>} />

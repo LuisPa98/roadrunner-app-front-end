@@ -1,6 +1,7 @@
 import api from "./apiConfig.js";
 
 export const signUp = async (credentials) => {
+  console.log(credentials)
   try {
     const resp = await api.post("/users/register/", credentials);
     localStorage.setItem("token", resp.data.access);

@@ -33,10 +33,10 @@ function SignUp({ setUser, setProfile }) {
 
     try {
       const userData = await signUp(form);
+      console.log(userData)
       setUser(userData.user);
       setProfile(userData.profile)
-
-      navigate("/profile");
+      navigate("/feed");
     } catch (error) {
       console.error(error);
       setForm((prevForm) => ({
@@ -74,6 +74,15 @@ function SignUp({ setUser, setProfile }) {
             name='username'
             value={form.username}
             placeholder='Enter Username'
+            onChange={handleChange}
+            required
+            autoComplete="off"
+          />
+            <input
+            type='text'
+            name='email'
+            value={form.email}
+            placeholder='Enter email'
             onChange={handleChange}
             required
             autoComplete="off"
