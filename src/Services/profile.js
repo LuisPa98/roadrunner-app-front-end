@@ -1,1 +1,1 @@
-import api from "./apiconfig";
+import api from "./apiConfig";
