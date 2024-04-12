@@ -30,7 +30,7 @@ function Login({ setUser, setProfile }) {
       const userData = await signIn(form); // Use your login service function
       setUser(userData.user);
       setProfile(userData.profile)
-      navigate("/profile"); // Redirect after successful login
+      navigate(`/profile/${userData.profile.user}`); // Redirect after successful login
     } catch (error) {
       console.error(error);
       setForm((prevForm) => ({
