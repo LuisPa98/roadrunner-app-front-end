@@ -4,7 +4,7 @@ export const getFollowers = async (profileId) => {
         // getting the followers endpoint from the backend based on the profleID
     try {
         const response = await api.get(`/profile/${profileId}/follow-list/`);
-        return response.data.follower
+        return response.data.followers
     } catch (error) {
         throw error;
     }

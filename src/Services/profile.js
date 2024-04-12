@@ -1,5 +1,6 @@
 import api from "./apiConfig.js";
 
+
   export const getUser = async (profileId) => {
     try {
       const resp = await api.get(`profile/${profileId}/`);
@@ -27,4 +28,4 @@ import api from "./apiConfig.js";
   
   
   
-  
+ 

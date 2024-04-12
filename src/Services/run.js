@@ -8,3 +8,21 @@ export const createRun = async (profileId, runData) => {
     throw error;
   }
 };
+
+export const feedRuns = async () => {
+  try {
+    const response = await api.get('/runs/feed/')
+    return response.data
+  } catch (error) {
+    throw error;    
+  }
+}
+
+export const userRuns = async (profileId) => {
+  try {
+    const response = await api.get(`/runs/${profileId}/`)
+    return response.data
+  } catch (error) {
+    throw error;    
+  }
+}
