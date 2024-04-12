@@ -41,7 +41,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp setuser={setUser} setProfile={setProfile} />} />
         <Route path="/sign-out" element={<SignOut />}/>
         <Route path="/profile" element={<Layout><Profile /></Layout>} />
-        <Route path="/update-account" element={<Layout><EditUser /></Layout>} />
+        <Route path="/update-account" element={<Layout><EditUser profile={profile} /></Layout>} />
         <Route path="/feed" element={<Layout><Feed /></Layout>} />
         <Route path="/run" element={<Layout><Run profile={profile}/></Layout>} />
         <Route path="/search" element={<Layout><Search /></Layout>} />
