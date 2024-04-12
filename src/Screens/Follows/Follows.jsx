@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getFollowers, getFollowing } from "../../Services/follow.js";
+import Profile from "../../Components/Profile/Profile.jsx";
 import "./follows.css";
 
 function Follows() {
@@ -10,7 +11,7 @@ function Follows() {
   const [showFollowers, setShowFollowers] = useState(false); 
 
   // will add Profileid when accessing this Route
-  let { profileId } = useParams();
+  const { profileId } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,6 +51,7 @@ function Follows() {
 
   return (
     <div className="">
+      <Profile />
       <h1>follows</h1>
       <button
         className="followScreenFollowingBtn"
