@@ -258,8 +258,9 @@ function Run({ profile }) {
             units: "kilometers",
           });
           setDistance(calculatedDistance);
+          console.log("this is " + distance)
 
-          console.log("this is the route" + updatedRoute);
+          console.log("this is the route" + updatedRoute); //TEST 
 
           const pathRoute = polyline.fromGeoJSON({
             type: "Feature",
