@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import EditUser from "./Screens/EditUser/EditUser.jsx";
 import Feed from "./Screens/Feed/Feed.jsx";
 import Follows from "./Screens/Follows/Follows.jsx";

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./header.css";
 
-function Header() {
+function Header({ user, profile }) {
   let navigate = useNavigate()
 
   return( 
