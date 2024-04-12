@@ -8,7 +8,7 @@ function NavBar() {
   return( 
   <div className="navBar">
     <button 
-    onClick={() => {navigate("/");}}
+    onClick={() => {navigate("/feed");}}
     >Home</button>
     <button onClick={() => {navigate("/search")}}>Search</button>
     <button onClick={() => {navigate("/run")}}>Run</button>

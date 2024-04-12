@@ -8,7 +8,6 @@ function SignOut({setUser}) {
   useEffect(() => {
     const signOutUser = async () => {
       await signOut()
-      setUser(null)
       navigate('/')
     }
     signOutUser()
