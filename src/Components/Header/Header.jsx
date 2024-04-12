@@ -1,16 +1,39 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import {useState, useEffect} from "react";
+import { verifyUser } from "../../Services/users.js";
+import { useNavigate, NavLink } from "react-router-dom";
 import "./header.css";
 
-function Header({ user, profile }) {
+function Header() {
+  
   let navigate = useNavigate()
+
+  const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const userData = await verifyUser();
+      if (userData){
+        setUser(userData.user)
+        setProfile(userData.profile)
+      } else {
+        setUser(null)
+        setProfile(null)
+      }
+    };
+  
+    fetchUser();
+  }, []);
 
   return( 
     <div className="header">
       <div className="headerLogo">Logo</div>
+      <NavLink className="nav-link" to="/sign-out">
+        Log Out
+      </NavLink>
       <button 
       className="headerProfileBtn"
-      onClick={() => {navigate("/profile");}}
+      onClick={() => {navigate(`/profile/${user.id}/`);}}
       >Profile</button>
     </div>
   );

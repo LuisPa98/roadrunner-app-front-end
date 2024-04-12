@@ -89,7 +89,7 @@ function SignUp({ setUser, setProfile }) {
           />
           <input
             type='text'
-            name='firstname'
+            name='first_name'
             value={form.first_name}
             placeholder='Enter Firstname'
             onChange={handleChange}
@@ -98,7 +98,7 @@ function SignUp({ setUser, setProfile }) {
           />
           <input
             type='text'
-            name='lastname'
+            name='last_name'
             value={form.last_name}
             placeholder='Enter Lastname'
             onChange={handleChange}
