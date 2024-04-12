@@ -9,7 +9,7 @@ export const createRun = async (profileId, runData) => {
   }
 };
 
-export const feedRuns = async () => {
+export const getFeedRuns = async () => {
   try {
     const response = await api.get('/runs/feed/')
     return response.data

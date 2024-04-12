@@ -1,16 +1,34 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Map from "../../Components/Map/Map.jsx"
-import { feedRuns } from "../../Services/run.js"
+import { getFeedRuns } from "../../Services/run.js"
+import { addComment, listComment } from "../../Services/comment.js"
 import "./feed.css";
 
 function Feed() {
+  const [ Runs, setRuns] = useState([])
+  const [ comments, setComments ] = useState([])
+  const [ likes, setLikes ] = useState([])
+
   
+
+  const fetchFeedRuns = async () => {
+    const feedRunData = await getFeedRuns()
+    setRuns(feedRunData)
+  }
+
+
+  useEffect(() => {
+    fetchFeedRuns()
+  }, [])
   
+  console.log(Runs)
   return (
   <div>
-    <h3></h3>
+    <h3>Feed</h3>
     {
-      
+      Runs.map((Run) => (
+        <Map className="feedRuns" Run={Run} key={Run.id}/>
+      ))
     }
   </div>
   );
