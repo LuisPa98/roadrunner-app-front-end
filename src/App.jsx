@@ -11,6 +11,7 @@ import SignUp from "./Screens/SignUp/SignUp.jsx";
 import Layout from "./Components/Layout/Layout.jsx";
 import { verifyUser } from "./Services/users.js";
 import SignOut from "./Screens/SignOut/SignOut.jsx";
+import AboutUs from "./Screens/AboutUs/AboutUs.jsx";
 import "./App.css";
 
 function App() {
@@ -45,7 +46,12 @@ function App() {
         <Route path="/feed" element={<Layout><Feed /></Layout>} />
         <Route path="/run" element={<Layout><Run profile={profile}/></Layout>} />
         <Route path="/search" element={<Layout><Search /></Layout>} />
+<<<<<<< Updated upstream
         <Route path="/follows/:profileId" element={<Layout><Follows profile={profile}/></Layout>} />
+=======
+        <Route path="/follows/:profileId" element={<Layout><Follows /></Layout>} />
+        <Route path="/about" element={<Layout><AboutUs /></Layout>}/>
+>>>>>>> Stashed changes
       </Routes>
     </>
   );
