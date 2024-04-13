@@ -1,3 +1,39 @@
-.mapComponentContainer {
-    border: 1px black solid;
+.mapComponentContainerProfilePic {
+    width: 70px;
+    height: 70px;
+}
+.mapComponentContainerImage {
+    width: 40vw;
+    height: 25vh;
+}
+
+@media (max-width: 720px) {
+    .mapComponentContainer {
+        display: flex;
+        flex-direction: column;
+        border: 1px black solid;
+        width: 80vw;
+        height: 50vh;
+        position: relative;
+
+    }
+    .mapComponentContainerName {
+        display: flex;
+        align-items: center;
+    }
+
+    .mapComponentContainerProfilePic {
+        width: 70px;
+        height: 70px;
+    }
+
+    .mapComponentContainerRunStats {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .mapComponentContainerImage {
+        width: 80vw;
+        height: 25vh;
+    }
 }

@@ -7,11 +7,9 @@ function NavBar() {
   const navigate = useNavigate();
   return( 
   <div className="navBar">
-    <button 
-    onClick={() => {navigate("/feed");}}
-    >Home</button>
-    <button onClick={() => {navigate("/search")}}>Search</button>
-    <button onClick={() => {navigate("/run")}}>Run</button>
+    <button onClick={() => {navigate("/feed");} } className="navBarBtns">Home</button>
+    <button onClick={() => {navigate("/search")}} className="navBarBtns">Search</button>
+    <button onClick={() => {navigate("/run")}} className="navBarBtns">Run</button>
   </div>
   );
 }

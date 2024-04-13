@@ -4,10 +4,10 @@ import { getFeedRuns } from "../../Services/run.js"
 import { addComment, listComment } from "../../Services/comment.js"
 import "./feed.css";
 
-function Feed() {
+function Feed({ profile }) {
   const [ Runs, setRuns] = useState([])
   const [ comments, setComments ] = useState([])
-  const [ likes, setLikes ] = useState([])
+  const [ runsToggle, setRunsToggle ] = useState(false)
 
   
 
@@ -19,15 +19,15 @@ function Feed() {
 
   useEffect(() => {
     fetchFeedRuns()
-  }, [])
+  }, [runsToggle])
   
   console.log(Runs)
   return (
-  <div>
+  <div className="feedContainer">
     <h3>Feed</h3>
     {
       Runs.map((Run) => (
-        <Map className="feedRuns" Run={Run} key={Run.id}/>
+        <Map className="feedRuns" Run={Run} setRunsToggle={setRunsToggle} myProfile={profile} key={Run.id}/>
       ))
     }
   </div>

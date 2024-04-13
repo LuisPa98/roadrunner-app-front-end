@@ -1,0 +1,13 @@
+.navBar {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    height: 10vh;
+    width: 100vw;
+    background-color: #50A5B1;
+}
+
+.navBarBtns {
+    flex: 1;
+    border: none;
+}

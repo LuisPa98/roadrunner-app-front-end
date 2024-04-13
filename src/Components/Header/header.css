@@ -1,0 +1,38 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vh;
+    top: 0;
+    height: 10vh;
+    width: 100vw;
+    background-color: #50A5B1;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+.headerProfileBtn {
+    flex: 1;
+    border: none;
+    background-color: #233142;
+    color: white;
+    margin: 0 3vh;
+    font-size: 3vh;
+}
+
+.headerLogoutBtn {
+    flex: 1;
+    border: none;
+    background-color: #233142;
+    color: white;
+    margin: 0 3vh;
+    font-size: 3vh;
+}
+
+.headerBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
