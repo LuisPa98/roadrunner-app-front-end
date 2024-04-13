@@ -64,10 +64,10 @@ function SignUp({ setUser, setProfile }) {
   };
   
   return (
-    <div className="home-container">
+    <div className="signupContainer">
       
       <div>
-        <form className="home-form" onSubmit={handleSubmit}>
+        <form className="signupForm" onSubmit={handleSubmit}>
           <h1>Register</h1>
           <input
             type='text'

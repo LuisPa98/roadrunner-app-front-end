@@ -51,10 +51,10 @@ function Login({ setUser, setProfile }) {
   };
 
   return (
-    <div className="home-container">
+    <div className="loginContainer">
       <div>
-        <form className="home-form" onSubmit={handleSubmit}>
-          <h1>Login</h1>
+        <form className="loginForm" onSubmit={handleSubmit}>
+          <h1 className="loginName">Login</h1>
           <input
             type="text"
             name="username"
@@ -76,7 +76,7 @@ function Login({ setUser, setProfile }) {
           {renderError()}
           <button type="submit">Login</button>
         </form>
-        <img src="https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/pin-s-a+9ed4bd(-73.9897624,40.7400173),pin-s-b+000(-73.9897754,40.7400121),path-5+f44-0.5(c%60twF~brbM@B)/auto/500x300?access_token=pk.eyJ1IjoiamxvcGV6MDAwMSIsImEiOiJjbHVxM3hpNzUyaDF3MmlwNTdweXo2eTV4In0.TjcOANL_eRtpoaDXWQpWPg" alt="run"/>
+        
       </div>
     </div>
   );

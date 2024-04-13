@@ -28,13 +28,15 @@ function Header() {
   return( 
     <div className="header">
       <div className="headerLogo">Logo</div>
-      <NavLink className="nav-link" to="/sign-out">
-        Log Out
-      </NavLink>
-      <button 
-      className="headerProfileBtn"
-      onClick={() => {navigate(`/profile/${user.id}/`);}}
-      >Profile</button>
+      <div className="headerBtn">
+        <NavLink className="headerLogoutBtn" to="/sign-out">
+          Log Out
+        </NavLink>
+        <button 
+        className="headerProfileBtn"
+        onClick={() => {navigate(`/profile/${user.id}/`);}}
+        >Profile</button>
+      </div>
     </div>
   );
 }
