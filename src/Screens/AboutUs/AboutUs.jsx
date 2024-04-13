@@ -1,8 +1,8 @@
 import React from 'react';
 import './aboutUs.css'; 
 import Developer1Image from '../../img/Developer1Image.png'; 
-import Developer2Image from '../../img/Developer2mage.png';   
-import Developer3Image from '../../img/Developer3Image.png'; 
+import Developer2Image from '../../img/Developer2Image.png';   
+// import Developer3Image from '../../img/Developer3Image.png'; 
 import Developer4Image from '../../img/Developer4Image.png'; 
 
 function AboutUs() {
@@ -53,7 +53,7 @@ function AboutUs() {
           </div>
         </div>
         <div className="developer">
-          <img src={Developer3Image} alt="Developer 3" />
+          {/* <img src={Developer3Image} alt="Developer 3" /> */}
           <div className="developer-info">
             <h2>About Me</h2>
             <p>
