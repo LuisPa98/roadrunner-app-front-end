@@ -40,12 +40,12 @@ function App() {
         <Route path="/" element={<LogIn setUser={setUser} setProfile={setProfile}/>} />
         <Route path="/sign-up" element={<SignUp setUser={setUser} setProfile={setProfile} />} />
         <Route path="/sign-out" element={<SignOut />}/>
-        <Route path="/profile/:profileId" element={<Layout><Profile /></Layout>} />
+        <Route path="/profile/:profileId" element={<Layout><Profile profile={profile} /></Layout>} />
         <Route path="/update-account" element={<Layout><EditUser profile={profile} /></Layout>} />
         <Route path="/feed" element={<Layout><Feed /></Layout>} />
         <Route path="/run" element={<Layout><Run profile={profile}/></Layout>} />
         <Route path="/search" element={<Layout><Search /></Layout>} />
-        <Route path="/follows/:profileId" element={<Layout><Follows /></Layout>} />
+        <Route path="/follows/:profileId" element={<Layout><Follows profile={profile}/></Layout>} />
       </Routes>
     </>
   );

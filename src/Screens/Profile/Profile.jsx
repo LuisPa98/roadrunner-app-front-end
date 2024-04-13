@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import { getUser } from "../../Services/profile.js";
 import { userRuns } from '../../Services/run.js';
 import Map from "../../Components/Map/Map.jsx"
+import ProfileComponent from "../../Components/Profile/Profile.jsx";
 import "./profile.css";
 
-function Profile() {
+function Profile({profile}) {
   const [Runs, setRuns] = useState([])
 
   const { profileId } = useParams()
@@ -31,6 +32,7 @@ function Profile() {
 
   return (
     <div>
+      <ProfileComponent profile={profile} />
       <h1>I am profile page</h1>
       {
       Runs.map((Run) => (

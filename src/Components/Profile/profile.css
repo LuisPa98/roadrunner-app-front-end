@@ -1,0 +1,12 @@
+profileComponentEdit {
+    background: url(../../../public/Assets/EditPencil.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    height: 12vh;
+    width: 12vh;
+    padding: 0;
+    border: transparent;
+    transition: 0.2s ease-in;
+}
