@@ -46,12 +46,10 @@ function App() {
         <Route path="/feed" element={<Layout><Feed profile={profile}/></Layout>} />
         <Route path="/run" element={<Layout><Run profile={profile}/></Layout>} />
         <Route path="/search" element={<Layout><Search /></Layout>} />
-<<<<<<< Updated upstream
         <Route path="/follows/:profileId" element={<Layout><Follows profile={profile}/></Layout>} />
-=======
         <Route path="/follows/:profileId" element={<Layout><Follows /></Layout>} />
         <Route path="/about" element={<Layout><AboutUs /></Layout>}/>
->>>>>>> Stashed changes
+
       </Routes>
     </>
   );
