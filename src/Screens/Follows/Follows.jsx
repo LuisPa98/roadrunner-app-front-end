@@ -4,7 +4,7 @@ import { getFollowers, getFollowing } from "../../Services/follow.js";
 import Profile from "../../Components/Profile/Profile.jsx";
 import "./follows.css";
 
-function Follows() {
+function Follows({profile}) {
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
   const [showFollowing, setShowFollowing] = useState(false);
@@ -51,7 +51,7 @@ function Follows() {
 
   return (
     <div className="">
-      <Profile />
+      <Profile profile={profile} />
       <h1>follows</h1>
       <button
         className="followScreenFollowingBtn"
