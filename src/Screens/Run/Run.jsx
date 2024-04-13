@@ -5,7 +5,7 @@ import polyline from "@mapbox/polyline";
 import * as turf from "@turf/turf";
 import "./run.css";
 
-function Run({ profile }) {
+function Run({ profile, user }) {
   mapboxgl.accessToken = process.env.REACT_APP_TOKEN;
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
