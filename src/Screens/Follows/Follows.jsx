@@ -50,7 +50,7 @@ function Follows({profile}) {
 
 
   return (
-    <div className="">
+    <div className="followScreenContainer">
       <Profile profile={profile} />
       <h1>follows</h1>
       <button
