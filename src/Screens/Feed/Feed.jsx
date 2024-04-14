@@ -9,6 +9,7 @@ function Feed({ profile, user }) {
   const [comments, setComments] = useState([]);
   const [runsToggle, setRunsToggle] = useState(false);
   const [key, setKey] = useState(0);
+  const [toggle, setToggle] = useState(0)
 
   // function Feed({user}) {
   //   const [ Runs, setRuns] = useState([])
@@ -25,6 +26,11 @@ function Feed({ profile, user }) {
     fetchFeedRuns();
   }, [runsToggle]);
 
+  //Will rerender state when comment is added to render the correct comment length
+  useEffect(() => {
+    fetchFeedRuns()
+  },[toggle])
+
   return (
     <div key={key} className="feedContainer">
       <h3 className="feedHeader">Feed</h3>
@@ -33,6 +39,7 @@ function Feed({ profile, user }) {
           className="feedRuns"
           user={user}
           Run={Run}
+          setToggle={setToggle}
           setKey={setKey}
           setRunsToggle={setRunsToggle}
           myProfile={profile}

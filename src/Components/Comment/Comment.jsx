@@ -1,6 +1,7 @@
 // import {useState, useEffect} from 'react'
 // import { listComment} from '../../Services/comment.js'
 // import { getUser } from '../../Services/profile.js'
+import { useEffect } from "react";
 import { CgProfile } from "react-icons/cg";
 import "./comment.css"
 
@@ -33,6 +34,8 @@ function Comment({run, comments}) {
     //     const response = await listComment(id);
     //     setComments(response);
     // };
+    
+
 
     return (
         <div>
