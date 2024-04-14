@@ -27,7 +27,7 @@ function Feed({ profile, user }) {
 
   return (
     <div key={key} className="feedContainer">
-      <h3>Feed</h3>
+      <h3 className="feedHeader">Feed</h3>
       {Runs.map((Run) => (
         <Map
           className="feedRuns"

@@ -3,3 +3,17 @@
     width: 100vw;
     overflow: scroll;
 }
+
+.feedHeader{
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 0;
+
+}
+
+@media (max-width: 600px) {
+    .feedHeader{
+        font-size: 30px;
+        margin-bottom: 0;
+    }
+}
