@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { getAllUsers } from "../../Services/users.js";
 import SearchUser from "../../Components/SearchUser/searchUser.jsx";
 import { Link } from "react-router-dom";
+import { FiSearch } from "react-icons/fi";
 import "./search.css";
 
 function Search() {
   const [users, setUsers] = useState([]);
-
 
   useEffect(() => {
     getUsers();
@@ -28,6 +28,7 @@ function Search() {
   const onSearchForUser = async (event) => {
     event.preventDefault();
     const query = event.target.elements.querySearch.value;
+    console.log(query);
 
     // Checks if the query is not just whitespace.
     if (query.trim()) {
@@ -40,22 +41,29 @@ function Search() {
   };
 
   return (
-    <div>
+    <div className="searchContainer">
       <h1 className="searchForUserHeading">Search For A User</h1>
 
-      <div className="searchFieldContainer">
-        <form onSubmit={onSearchForUser}>
-          <input name="querySearch" />
-          <button type="submit">Search</button>
+      <div className="searchWrapper">
+        <form className="searchFormContainer" onSubmit={onSearchForUser}>
+          <input
+            name="querySearch"
+            className="searchInput"
+            type="search"
+            placeholder="Search"
+          />
+          <button type="submit" class="searchBtn">
+            <FiSearch color="#F1600D" size={55} />
+          </button>
         </form>
       </div>
 
-
       {/* Conditionally render search results or all users. Display search results if available, otherwise display all users. */}
-      <div className="searchUsersContainer">
-        {users.length > 0 ? users.map(
-          (userProfile) => (
+      <div>
+        {users.length > 0 ? (
+          users.map((userProfile) => (
             <Link
+              className="searchLinkToUserProfile"
               key={userProfile.user.id}
               to={`/profile/${userProfile.user}/`}
             >
@@ -66,8 +74,10 @@ function Search() {
                 />
               </div>
             </Link>
-          )
-        ) : <p>No user found</p>}
+          ))
+        ) : (
+          <p>No user found</p>
+        )}
       </div>
     </div>
   );
