@@ -36,7 +36,6 @@ function Profile({ profile, myProfile, user }) {
   return (
     <div key={key}>
       <ProfileComponent profile={profile} />
-      <h1>I am profile page</h1>
       {Runs.map((Run) => (
         <Map
           className="userRuns"

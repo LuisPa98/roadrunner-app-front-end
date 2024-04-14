@@ -323,24 +323,23 @@ function Run({ profile, user }) {
   };
 
   return (
-    <div className="Stopwatch">
-      <h3>You call yourself a runner?</h3>
+    <div className="runContainer">
+      <h3 className="runHeader">You Call Yourself A Runner?</h3>
       <div
         id="map"
         ref={mapContainerRef}
-        style={{ width: "100%", height: "400px" }}
       ></div>
-      <h1>
+      <h1 className="runStopWatch">
         <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
         <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
         <span>{("0" + ((time / 10) % 1000)).slice(-2)}</span>
       </h1>
-      <div>Total distance: {distance.toFixed(2)} km</div>
+      <p className="runDistance">Total distance: {distance.toFixed(2)} km</p>
 
       <div>
         {!start && !runEnded && (
           <div>
-            <button className="stopwatch-button" onClick={() => handleStart()}>
+            <button className="runButton" onClick={() => handleStart()}>
               PROVE IT
             </button>
           </div>
@@ -349,14 +348,15 @@ function Run({ profile, user }) {
         {/* Show stop button only if started */}
         {start && (
           <div>
-            <button onClick={handleStop}>Giving up already?</button>
+            <button  className="runButton"  onClick={handleStop}>Giving up already?</button>
           </div>
         )}
 
         {/* Show another run button only if ended */}
         {runEnded && (
           <div>
-            <button
+            <button 
+              className="runButton" 
               onClick={() => {
                 handleAnotherRun();
               }}
