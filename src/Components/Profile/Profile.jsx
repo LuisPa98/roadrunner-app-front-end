@@ -14,6 +14,7 @@ function Profile({ profile }) {
   const { profileId } = useParams();
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
+  const [isFollowed, setIsFollowed] = useState(false);
 
   //sets the state of the user profile from link navigation
   const [viewingProfile, setViewingProfile] = useState({});
@@ -37,6 +38,11 @@ function Profile({ profile }) {
 
     fetchViewingProfile();
   }, []);
+
+  // useEffect(() => {
+  //   // checks if the current user has already liked the run on profile  being passed as a prop by the app.jsx
+  //   setIsFollowed(Run.likes.some((like) => like === profile?.user));
+  // }, [profile?.user]); //  rerenders when these changes ?
 
   const handleCreateFollow = async (profile, profileId) => {
     try {
@@ -64,25 +70,26 @@ function Profile({ profile }) {
   return (
     <div className="profileComponentContainer">
       <img src="{profileDetails.picture}" />
-      {profile && profileId === profile.user  && (<button
-        onClick={(event) => {
-          navigate("/update-account");
-        }}
-        className="profileComponentEdit"
-      ></button>
-)}
+      {profile && profileId === profile.user && (
+        <button
+          onClick={(event) => {
+            navigate("/update-account");
+          }}
+          className="profileComponentEdit"
+        ></button>
+      )}
       <h1></h1>
       <h2 className="profileComponentSubheadings">Following</h2>
       <p>{following.length}</p>
       <h2 className="profileComponentSubheadings">Followers</h2>
       <p>{followers.length}</p>
-      {profile && followers.includes(profile.user === profileId) ?  (
+      {profile && followers.includes(profile.user === profileId) ? (
+        <button onClick={() => handleDeleteFollow(profile, profileId)}>
+          Unfollow
+        </button>
+      ) : (
         <button onClick={() => handleCreateFollow(profile, profileId)}>
           Follow
-        </button>
-      ):
-       (<button onClick={() => handleDeleteFollow(profile, profileId)}>
-          Unfollow
         </button>
       )}
     </div>

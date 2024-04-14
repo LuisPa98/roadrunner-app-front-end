@@ -1,7 +1,10 @@
 .loginContainer {
+    background: url(../../../public/Assets/SkyTrees.png);
+    background-position: center;
+    background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     height: 100vh;
     width: 100vw;
@@ -10,4 +13,56 @@
 .loginForm {
     display: flex;
     flex-direction: column;
+    width: 50%;
+    margin-top: 35%;
+    margin-bottom: -15%;
+}
+
+.loginInput {
+    opacity: .6;
+    height: 40px; 
+    margin-bottom: 20px;  
+    border-style: none;
+    border-radius: 12px;
+    padding-left: 10px;
+}
+
+.loginSubmitButton {
+    color: white;
+    background-color: #1A265A;
+    font-weight: 700;
+    opacity: .8;
+    height: 40px;
+    border-style: none;
+    border-radius: 12px;
+}
+
+.loginRedirect {
+    color: #fef6ed;
+    font-weight: 700;
+}
+
+.loginLinkToSignup {
+    color: #F1600D;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.loginLinkToSignup:hover {
+    color: #50A5B1;
+    font-weight: 900;
+}
+
+@media (min-width: 700px) {
+    .loginLogo {
+        margin-top: -5%;
+    }
+    
+    .loginForm {
+        width: 30%;
+        padding-top: 20%;
+    }
+    .loginRedirect {
+        font-size: x-large;
+    }
 }
