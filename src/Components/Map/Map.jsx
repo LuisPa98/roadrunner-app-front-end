@@ -8,34 +8,21 @@ import Modal from "react-modal";
 import "./map.css";
 import { listComment } from "../../Services/comment.js";
 import { getUser } from "../../Services/profile.js";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { BiCommentDetail } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg";
 
 const appElement = document.getElementById("root");
 Modal.setAppElement(appElement);
 
 const customStyles = {
-  content: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "800px", // Width set to 800px
-    height: "550px", // Height set to 800px
-    overflow: "auto", // Enables scrolling within the modal content
-    background: "#fff",
-    padding: "20px",
-    borderRadius: "10px",
-    border: "1px solid #ccc",
-  },
   overlay: {
     backgroundColor: "rgba(0, 0, 0, 0.75)", // Modal overlay color
   },
 };
 
-// function Map({Run, user, setKey}) {
-
-function Map({ Run, setRunsToggle, runsToggle, myProfile, setKey, user }) {
+function Map({ Run, setRunsToggle, runsToggle, myProfile, setKey, user, setToggle}) {
   const [convertedTime, SetConvertedTime] = useState("");
   const [pace, setPace] = useState("");
   const [isLiked, setIsLiked] = useState(false);
@@ -69,8 +56,6 @@ function Map({ Run, setRunsToggle, runsToggle, myProfile, setKey, user }) {
     setComments(response);
   };
 
-  let profilePic =
-    "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png";
 
   // Automatically convert time on initial load or when Run.timetotal changes
   useEffect(() => {
@@ -119,7 +104,7 @@ function Map({ Run, setRunsToggle, runsToggle, myProfile, setKey, user }) {
     const seconds = Math.floor(timetotal / 1000);
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    const time = `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+    const time = `${minutes}m ${remainingSeconds.toString().padStart(2, "0")}s`;
     SetConvertedTime(time);
   };
 
@@ -134,6 +119,11 @@ function Map({ Run, setRunsToggle, runsToggle, myProfile, setKey, user }) {
     );
   };
 
+
+  const date = new Date(Run.date);
+  const options = {year: 'numeric', month: 'long', day: 'numeric'}
+  const formattedDate = date.toLocaleDateString('en-US', options);
+
   const onSubmit = async (event) => {
     event.preventDefault();
     const commentContent = event.target.content.value;
@@ -142,65 +132,79 @@ function Map({ Run, setRunsToggle, runsToggle, myProfile, setKey, user }) {
       console.log("Comment Added:", response);
       // event.target.content.value = '';  // Clear the textarea after submitting
       setKey((prev) => prev + 1);
-    } catch (error) {
+      setToggle((prev) => prev + 1)
+      // Toggle to force re-render in other parts of the application
+     } catch (error) {
       console.error("Error adding comment:", error.response.data);
       console.error("Failed to add comment:", error);
     }
   };
 
   return (
-    <div>
+    <div className="tabletContainer">
       <div className="mapComponentContainer">
         <Link
           to={`/profile/${Run.profile.user}/`}
           className="mapComponentContainerName"
         >
-          <img className="mapComponentContainerProfilePic" src={profilePic} />
-          {Run.profile.username}
+          {/* <img className="mapComponentContainerProfilePic" src={profilePic} /> */}
+          <CgProfile className="mapComponentContainerProfilePic"/>
+          <span className="mapComponentContainerStat">{Run.profile.username}</span>
         </Link>
-        <p className="mapComponentContainerDate">{Run.date}</p>
+        <p className="mapComponentContainerDate"> {formattedDate}</p>
+
         <div className="mapComponentContainerRunStats">
-          <p className="mapComponentContainerDistance">
-            Distance:{Run.distance.toFixed(2)}Km
+          <p className="statsInfo">
+            Distance: <span className="mapComponentContainerStat">{Run.distance.toFixed(2)}Km</span>
           </p>
-          <p className="mapComponentContainerTime">Time:{convertedTime}</p>
-          <p className="mapComponentContainerPace">Pace:{pace}</p>
+          <span className="divider">|</span>
+          <p className="statsInfo">Time: <span className="mapComponentContainerStat">{convertedTime}</span></p>
+          <span className="divider">|</span>
+          <p className="statsInfo">Pace: <span className="mapComponentContainerStat">{pace}</span></p>
         </div>
-        <div className="mapComponentContainerImage">
+
+        <div >
           <img src={Run.path} className="mapComponentContainerImage" />
         </div>
+
         <div className="mapComponentContainerCommentsLikes">
           {isLiked ? (
-            <button className="mapComponentContainerLikes" onClick={handleLike}>
-              Unlike {Run.likes.length}
+            <button className="mapComponentContainerButton" onClick={handleLike}>
+              <FaHeart color="#F1600D" size={35}/> {Run.likes.length}
             </button>
           ) : (
-            <button className="mapComponentContainerLikes" onClick={handleLike}>
-              Likes {Run.likes.length}
+            <button className="mapComponentContainerButton" onClick={handleLike}>
+              <FaRegHeart size={35}/> {Run.likes.length}
             </button>
           )}
-          <button className="mapComponentContainerComments" onClick={() => openModal(true)}>
-            Comment {Run.comments.length}
+          <button className="mapComponentContainerButton" onClick={() => openModal(true)}>
+          <BiCommentDetail  size={35}/>  {Run.comments.length}
           </button>
         </div>
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <Comment
-          run={Run}
-          comments={comments}
-          fetchUserDetails={fetchUserDetails}
-        />
-        <form onSubmit={onSubmit}>
-          <textarea name="content" rows={4} cols={40} />
-          <button type="submit">Submit</button>
-        </form>
-        <button onClick={closeModal}>Close</button>
-      </Modal>
+      <div className="mapCommentContainer">
+        <Modal
+          isOpen={modalIsOpen}
+          style={customStyles}
+          onRequestClose={closeModal}
+          contentLabel="Example Modal"
+          className="mapModal"
+        >
+          <Comment
+            run={Run}
+            comments={comments}
+          />
+          <div className="mapModalForm">
+            <form onSubmit={onSubmit}>
+              <textarea className="mapTextArea" name="content" rows={5} cols={50} />
+              <div >
+                <button className="modalClose" onClick={closeModal}>Close</button>
+                <button className="modalSubmit" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </Modal>`
+      </div>
     </div>
   );
 }

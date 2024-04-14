@@ -1,0 +1,33 @@
+.searchUserContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  color: black;
+  width: 30%;
+  margin: 0 auto;
+}
+.searchUserProfileUsername {
+  font-size: 35px;
+  flex-grow: 1;
+  display: flex;
+  margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+  .searchUserContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    color: black;
+    width: 57%;
+    margin: 0 auto;
+  }
+
+  .searchUserProfileUsername {
+    font-size: 30px;
+    display: flex;
+    margin-left: 10px;
+  }
+}
