@@ -8,3 +8,12 @@
     margin-left: 70px;
     margin-top: 3px;
 }
+
+@media (max-width: 600px) {
+    .comment{
+        font-size: 19px;
+        margin-left: 70px;
+        margin-top: 3px;
+    }
+
+}

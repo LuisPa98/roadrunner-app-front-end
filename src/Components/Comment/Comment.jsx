@@ -35,7 +35,7 @@ function Comment({run, comments}) {
     // };
 
     return (
-        <div className='commentContainer'>
+        <div>
             {comments.map((comment) => (
                 <div key={comment.id} className='commentProfileAndDetails'>
                     <div className="commentProfileDetails">
