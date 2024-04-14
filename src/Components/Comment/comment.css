@@ -1,0 +1,10 @@
+.commentProfileDetails{
+    display: flex;
+    align-items: center;
+}
+
+.comment{
+    font-size: 25px;
+    margin-left: 70px;
+    margin-top: 3px;
+}

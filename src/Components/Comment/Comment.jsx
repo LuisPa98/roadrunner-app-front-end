@@ -1,13 +1,12 @@
-import {useState, useEffect} from 'react'
+// import {useState, useEffect} from 'react'
 // import { listComment} from '../../Services/comment.js'
 // import { getUser } from '../../Services/profile.js'
+import { CgProfile } from "react-icons/cg";
+import "./comment.css"
 
 function Comment({run, comments}) {
     const {id} = run;
     // const [comments, setComments] = useState([]);
-    let profilePic = "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
-  
-  
 
     // useEffect(() => {
     //     const fetchUserDetails = async () => {
@@ -39,11 +38,12 @@ function Comment({run, comments}) {
         <div className='commentContainer'>
             {comments.map((comment) => (
                 <div key={comment.id} className='commentProfileAndDetails'>
-                    <div>
-                    <img src={profilePic} alt={comment.username} style={{ width: 50, height: 50, borderRadius: '50%' }} />
+                    <div className="commentProfileDetails">
+                    {/* <img src={profilePic} alt={comment.username} style={{ width: 50, height: 50, borderRadius: '50%' }} /> */}
+                        <CgProfile className="mapComponentContainerProfilePic"/>
                         <h2>{comment?.username}</h2>
                     </div>
-                    <p>{comment.comment}</p>
+                    <p className="comment">{comment.comment}</p>
                 </div>
             ))}
         </div>
