@@ -11,6 +11,8 @@ function Profile({ profile, myProfile, user }) {
   const [viewedProfile, setViewedProfile] = useState({});
   const [runsToggle, setRunsToggle] = useState(false);
   const [key, setKey] = useState(0);
+  const [toggle, setToggle] = useState(0)
+
 
   const { profileId } = useParams();
 
@@ -21,6 +23,11 @@ function Profile({ profile, myProfile, user }) {
   useEffect(() => {
     fetchUserRuns();
   }, [runsToggle]);
+
+    //Will rerender state when comment is added to render the correct comment length
+    useEffect(() => {
+      fetchUserRuns()
+    },[toggle])
 
   const getUserProfile = async () => {
     const response = await getUser(profileId);
@@ -42,6 +49,7 @@ function Profile({ profile, myProfile, user }) {
           Run={Run}
           user={user}
           setKey={setKey}
+          setToggle={setToggle}
           runsToggle={runsToggle}
           setRunsToggle={setRunsToggle}
           myProfile={myProfile}
