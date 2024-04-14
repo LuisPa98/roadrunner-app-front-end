@@ -13,7 +13,7 @@ function NavBar() {
   const [orangeHome, setOrangeHome] = useState(true);
   const [orangeSearch, setOrangeSearch] = useState(false);
   const [orangeRun, setOrangeRun] = useState(false)
-  const [orangeFollow, setOrangeFollow] = useState(false)
+  const [orangeProfile, setOrangeProfile] = useState(false)
 
   const homeStyle = orangeHome
     ? "navBarBtns navBarHome orangeHome"
@@ -24,9 +24,9 @@ function NavBar() {
     const runStyle = orangeRun
     ? "navBarBtns navBarRun orangeRun"
     : "navBarBtns navBarRun";
-    const followStyle = orangeFollow
-    ? "navBarBtns navBarFollow orangeFollow"
-    : "navBarBtns navBarFollow";
+    const profileStyle = orangeProfile
+    ? "navBarBtns navBarProfile orangeProfile"
+    : "navBarBtns navBarProfile";
 
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function NavBar() {
         setOrangeHome(true)
         setOrangeSearch(false)
         setOrangeRun(false)
-        setOrangeFollow(false)
+        setOrangeProfile(false)
         navigate("/feed");
       } } 
       className={homeStyle}
@@ -60,7 +60,7 @@ function NavBar() {
         setOrangeHome(false)
         setOrangeSearch(true)
         setOrangeRun(false)
-        setOrangeFollow(false)
+        setOrangeProfile(false)
         navigate("/search")}} 
       className={searchStyle}
     ></button>
@@ -69,7 +69,7 @@ function NavBar() {
       setOrangeHome(false)
       setOrangeSearch(false)
       setOrangeRun(true)
-      setOrangeFollow(false)
+      setOrangeProfile(false)
       navigate("/run")}}
     className={runStyle}
     ></button>
@@ -78,9 +78,9 @@ function NavBar() {
       setOrangeHome(false)
       setOrangeSearch(false)
       setOrangeRun(false)
-      setOrangeFollow(true) 
-      navigate(`/follows/${user.id}`)}} 
-    className={followStyle}
+      setOrangeProfile(true) 
+      navigate(`/profile/${user.id}/`)}} 
+    className={profileStyle}
     ></button>
   </div>
   );

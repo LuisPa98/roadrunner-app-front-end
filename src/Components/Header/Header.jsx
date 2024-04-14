@@ -41,13 +41,6 @@ function Header() {
       <div className="headerBtn">
         <NavLink className="headerLogoutBtn" to="/sign-out">Log Out</NavLink>
         <button 
-          className={profileStyle}
-          onClick={() => {
-          setOrangeProfile(true)
-          setOrangeAboutUs(false)
-          navigate(`/profile/${user.id}/`);}}
-        ></button>
-        <button 
         className={aboutusStyle} 
         onClick={() => {
           setOrangeProfile(false)

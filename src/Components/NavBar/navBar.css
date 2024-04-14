@@ -40,12 +40,12 @@
     height: 65px;
 }
 
-.navBarFollow {
-    background-image: url(../../../public/Assets/followswhite.png);
+.navBarProfile {
+    background-image: url("../../../public/Assets/Profilewhite.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 65px;
+    height: 55px;
     color: white;
 }
 
@@ -58,6 +58,6 @@
 .orangeRun{
     background-image: url("../../../public/Assets/Runorange.svg");
  }
-.orangeFollow{
-    background-image: url("../../../public/Assets/followsorange.png");
+ .orangeProfile {
+    background-image: url("../../../public/Assets/Profileorange.png");
 }
