@@ -41,7 +41,7 @@ function Profile({ profile, myProfile, user }) {
   };
 
   return (
-    <div key={key}>
+    <div key={key} className="profileContainer">
       <ProfileComponent profile={profile} />
       {Runs.map((Run) => (
         <Map

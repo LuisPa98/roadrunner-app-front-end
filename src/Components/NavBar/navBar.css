@@ -1,5 +1,6 @@
 .navBar {
     display: flex;
+    align-items: center;
     position: absolute;
     bottom: 0;
     height: 10vh;
@@ -8,6 +9,55 @@
 }
 
 .navBarBtns {
+    display: flex;
+    align-items: center;
     flex: 1;
     border: none;
+    background-color: #50A5B1;
+}
+
+.navBarHome {
+    background-image: url(../../../public/Assets/Feed.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 65px;
+}
+
+.navBarRun {
+    background-image: url(../../../public//Assets/Run.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 65px;
+}
+
+.navBarSearch {
+    background-image: url(../../../public/Assets/Search.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 65px;
+}
+
+.navBarFollow {
+    background-image: url(../../../public/Assets/followswhite.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 65px;
+    color: white;
+}
+
+.orangeHome {
+    background-image: url("../../../public/Assets/FeedOrange.svg");
+}
+.orangeSearch{
+    background-image: url("../../../public/Assets/Searchorange.svg");
+}
+.orangeRun{
+    background-image: url("../../../public/Assets/Runorange.svg");
+ }
+.orangeFollow{
+    background-image: url("../../../public/Assets/followsorange.png");
 }

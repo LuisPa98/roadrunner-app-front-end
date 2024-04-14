@@ -2,6 +2,13 @@
   display: flex;
   text-align: center;
   flex-direction: column;
+  height: 80vh;
+  width: 100vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: scroll;
 }
 
 .searchForUserHeading {

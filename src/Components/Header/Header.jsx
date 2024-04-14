@@ -7,8 +7,18 @@ function Header() {
   
   let navigate = useNavigate()
 
+  const [orangeProfile, setOrangeProfile] = useState(false);
+  const [orangeAboutUs, setOrangeAboutUs] = useState(false);
+
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
+
+  const profileStyle = orangeProfile
+    ? "headerProfileBtn orangeProfile"
+    : "headerProfileBtn";
+    const aboutusStyle = orangeAboutUs
+    ? "headerInfoBtn orangeAboutUs"
+    : "headerInfoBtn";
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -27,15 +37,23 @@ function Header() {
 
   return( 
     <div className="header">
-      <div className="headerLogo">Logo</div>
+      <div className="headerLogo"></div>
       <div className="headerBtn">
-        <NavLink className="headerLogoutBtn" to="/sign-out">
-          Log Out
-        </NavLink>
+        <NavLink className="headerLogoutBtn" to="/sign-out">Log Out</NavLink>
         <button 
-        className="headerProfileBtn"
-        onClick={() => {navigate(`/profile/${user.id}/`);}}
-        >Profile</button>
+          className={profileStyle}
+          onClick={() => {
+          setOrangeProfile(true)
+          setOrangeAboutUs(false)
+          navigate(`/profile/${user.id}/`);}}
+        ></button>
+        <button 
+        className={aboutusStyle} 
+        onClick={() => {
+          setOrangeProfile(false)
+          setOrangeAboutUs(true)
+          navigate('/about')}}
+          ></button>
       </div>
     </div>
   );
