@@ -42,15 +42,11 @@ function Profile({ profile, myProfile, user }) {
 
   return (
     <div key={key} className="profileContainer">
-<<<<<<< Updated upstream
       <ProfileComponent profile={profile} />
       <div className="profileRunLengthContainer">
         <h2>Total Runs</h2> 
         <span className='runLength'> {Runs.length}</span>
       </div>
-=======
-      <ProfileComponent profile={myProfile} />
->>>>>>> Stashed changes
       {Runs.map((Run) => (
         <Map
           className="userRuns"
