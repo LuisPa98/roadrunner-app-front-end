@@ -57,27 +57,8 @@
 .skillList{
     text-align: center;
 }
-
-@media (min-width: 600px)  {
-    .developer{
-        display: flex;
-        align-items: center;
-        text-align: center;
-        border: 3px solid black;
-        height: 65vh;
-        width: 43vw;
-        margin: 20px auto;
-    }
-    .developersSection{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-}
-
-
-
-@media   (min-width: 935px) {
+/*  for ipad Pro, and incase any tablet is at 2000 px */
+@media all and (max-width: 2000px) {
     .developer{
         display: flex;
         align-items: center;
@@ -87,8 +68,73 @@
         width: 43vw;
         margin: 20px auto;
     }
+    .developersSection{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
     .developerInfo p {
         margin: 7px 0;
         font-size: larger;
     }
 }
+
+/* for Ipad Air */
+@media all and (max-width: 920px)  {
+    .developer{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        border: 3px solid black;
+        height: 60vh;
+        width: 43vw;
+        margin: 20px auto;
+    }
+    .developersSection{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .developerInfo p {
+        margin: 7px 0;
+        font-size: larger;
+    }
+}
+
+/* Ipad Mini */
+
+@media all and (max-width: 800px) {
+    .developer{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        border: 3px solid black;
+        height: 80vh;
+        width: 43vw;
+        margin: 20px auto;
+    }
+}
+
+/* Iphone 14 Pro max, and Iphone XR */
+@media all and (max-width: 600px){
+    .developer{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        border: 3px solid black;
+        height: 88vh;
+        width: 90vw;
+        margin: 20px auto;
+    }
+} 
+
+/* Iphone SE and Iphone 12 pro */
+@media all and (max-width: 400px) {
+    .developer{
+        width: 90vw;
+        height: 108vh;
+    }
+}
+
+
+
