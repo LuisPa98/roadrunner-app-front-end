@@ -1,4 +1,62 @@
-profileComponentEdit {
+.profileComponentContainer {
+    display: flex;
+    justify-content: space-evenly; 
+}
+
+.profileComponentLeftSide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.profileComponentProfilePic {
+    width: 140px;
+    height: 140px;
+    color: #F1600D;
+}
+
+.profileComponentUsername {
+    color: #1A265A;
+    font-size: larger;
+    letter-spacing: .5px;
+}
+
+.profileComponentRightSide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.profileComponentSubheadings {
+    font-size: medium;
+    margin-bottom: -15%;
+    letter-spacing: .5px;
+}
+
+.profileComponentCountLink {
+    text-decoration: none;
+    color:#1A265A;
+    font-weight: 600;
+}
+
+.profileFollowUnfollowButton {
+    color: white;
+    background-color: #1A265A;
+    font-weight: 700;
+    opacity: .8;
+    height: 40px;
+    border-style: none;
+    border-radius: 12px;
+    width: 150%;
+    letter-spacing: .5px;
+}
+
+
+/* profileComponentEdit {
     background: url(../../../public/Assets/EditPencil.svg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -9,4 +67,4 @@ profileComponentEdit {
     padding: 0;
     border: transparent;
     transition: 0.2s ease-in;
-}
+} */
