@@ -88,6 +88,7 @@ function EditUser({ profile }) {
           <button className="editDeleteButtons" type="Submit">
             Edit Account
           </button>
+          </form>
           <button
               className="editDeleteButtons"
               onClick={() => setIsOpen(true)}
@@ -121,7 +122,6 @@ function EditUser({ profile }) {
                 </div>
               </div>
             </div>}
-        </form>
       </div>
     </div>
   );
