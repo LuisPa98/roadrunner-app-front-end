@@ -15,7 +15,7 @@ function Profile({ profile }) {
   const { profileId } = useParams();
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
-  const [isFollowed, setIsFollowed] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   //sets the state of the user profile from link navigation
   const [viewingProfile, setViewingProfile] = useState({});
@@ -38,21 +38,32 @@ function Profile({ profile }) {
     };
 
     fetchViewingProfile();
-  }, []);
+  }, [profileId]);
+    
+  // const checkFollowerStatus = () => {
+  //   const follows = followers.some((innerArray) =>
+  //   Array.isArray(innerArray) && innerArray.user.includes(profile.user)
+  //   );
+  //   setIsFollowing(follows);
+  // }
 
   // useEffect(() => {
-  //   // checks if the current user has already liked the run on profile  being passed as a prop by the app.jsx
-  //   setIsFollowed(Run.likes.some((like) => like === profile?.user));
-  // }, [profile?.user]); //  rerenders when these changes ?
+  //   checkFollowerStatus();
+  //   console.log(isFollowing, profile)
+  // }, [followers, profile])
 
   const handleCreateFollow = async (profile, profileId) => {
     try {
       await createFollow(profile.user, profileId);
       const followerData = await getFollowers(profileId);
       setFollowers(followerData);
+      setIsFollowing(true);
     } catch (error) {
       console.log(error);
     }
+    return (<button className="profileFollowUnfollowButton" onClick={() => handleDeleteFollow(profile, profileId)}>
+    Unfollow
+  </button>)
   };
 
   const handleDeleteFollow = async (profile, profileId) => {
@@ -60,13 +71,16 @@ function Profile({ profile }) {
       await deleteFollow(profile.user, profileId);
       const followerData = await getFollowers(profileId);
       setFollowers(followerData);
+      setIsFollowing(false);
     } catch (error) {
       console.log(error);
     }
+    return (
+      <button className="profileFollowUnfollowButton" onClick={() => handleCreateFollow(profile, profileId)}>
+        Follow
+      </button>
+    )
   };
-
-  console.log(viewingProfile);
-  console.log(profile);
 
   return (
     <div className="profileComponentContainer">
@@ -88,7 +102,7 @@ function Profile({ profile }) {
         <a className="profileComponentCountLink" href={`/follows/${profileId}`}>{following.length}</a>
         <h2 className="profileComponentSubheadings">Followers</h2>
         <a className="profileComponentCountLink" href={`/follows/${profileId}`}>{followers.length}</a>
-        {profile && followers.includes(profile.user === profileId) ? (
+        {isFollowing ? (
           <button className="profileFollowUnfollowButton" onClick={() => handleDeleteFollow(profile, profileId)}>
             Unfollow
           </button>
