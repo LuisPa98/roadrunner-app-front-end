@@ -43,6 +43,10 @@ function Profile({ profile, myProfile, user }) {
   return (
     <div key={key} className="profileContainer">
       <ProfileComponent profile={profile} />
+      <div className="profileRunLengthContainer">
+        <h2>Total Runs</h2> 
+        <span className='runLength'> {Runs.length}</span>
+      </div>
       {Runs.map((Run) => (
         <Map
           className="userRuns"

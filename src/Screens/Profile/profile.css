@@ -7,3 +7,15 @@
     transform: translate(-50%, -50%);
     overflow: scroll;
 }
+
+.profileRunLengthContainer{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.runLength{
+    font-size: 25px;
+}
