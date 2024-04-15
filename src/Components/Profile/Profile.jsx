@@ -7,6 +7,7 @@ import {
   createFollow,
   deleteFollow,
 } from "../../Services/follow.js";
+import { CgProfile } from "react-icons/cg";
 import "./profile.css";
 
 function Profile({ profile }) {
@@ -69,29 +70,34 @@ function Profile({ profile }) {
 
   return (
     <div className="profileComponentContainer">
-      <img src="{profileDetails.picture}" />
-      {profile && profileId === profile.user && (
-        <button
-          onClick={(event) => {
-            navigate("/update-account");
-          }}
-          className="profileComponentEdit"
-        ></button>
-      )}
-      <h1></h1>
-      <h2 className="profileComponentSubheadings">Following</h2>
-      <p>{following.length}</p>
-      <h2 className="profileComponentSubheadings">Followers</h2>
-      <p>{followers.length}</p>
-      {profile && followers.includes(profile.user === profileId) ? (
-        <button onClick={() => handleDeleteFollow(profile, profileId)}>
-          Unfollow
-        </button>
-      ) : (
-        <button onClick={() => handleCreateFollow(profile, profileId)}>
-          Follow
-        </button>
-      )}
+      <div className="profileComponentLeftSide">
+        <CgProfile className="profileComponentProfilePic" width="200px" />
+        {profile && profileId === profile.user && (
+          <button
+            onClick={(event) => {
+              navigate("/update-account");
+            }}
+            className="profileComponentEdit"
+          ></button>
+        )}
+        <h1 className="profileComponentUsername">{viewingProfile.username}</h1>
+        
+      </div>
+      <div className="profileComponentRightSide">
+        <h2 className="profileComponentSubheadings">Following</h2>
+        <a className="profileComponentCountLink" href={`/follows/${profileId}`}>{following.length}</a>
+        <h2 className="profileComponentSubheadings">Followers</h2>
+        <a className="profileComponentCountLink" href={`/follows/${profileId}`}>{followers.length}</a>
+        {profile && followers.includes(profile.user === profileId) ? (
+          <button className="profileFollowUnfollowButton" onClick={() => handleDeleteFollow(profile, profileId)}>
+            Unfollow
+          </button>
+        ) : (
+          <button className="profileFollowUnfollowButton" onClick={() => handleCreateFollow(profile, profileId)}>
+            Follow
+          </button>
+        )}
+      </div>
     </div>
   );
 }
