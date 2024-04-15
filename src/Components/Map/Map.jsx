@@ -101,11 +101,13 @@ function Map({ Run, setRunsToggle, runsToggle, myProfile, setKey, user, setToggl
 
   // // Function to convert time to "minutes:seconds"
   const formatTime = (timetotal) => {
-    const seconds = Math.floor(timetotal / 1000);
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    const time = `${minutes}m ${remainingSeconds.toString().padStart(2, "0")}s`;
-    SetConvertedTime(time);
+    const seconds = Math.floor(timetotal / 1000); 
+    const totalMinutes = Math.floor(seconds / 60);
+    const hours = Math.floor(totalMinutes / 60);  
+    const minutes = totalMinutes % 60;            
+    const remainingSeconds = seconds % 60;         
+    const formattedTime = `${hours}h ${minutes}m ${remainingSeconds.toString().padStart(2, "0")}s`;
+    SetConvertedTime(formattedTime); // Assuming SetConvertedTime is a state setter function
   };
 
   // Function to calculate pace
