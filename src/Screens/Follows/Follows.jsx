@@ -67,12 +67,15 @@ function Follows({ profile }) {
       <div className="followList">
         {showFollowing ? (
           following.map((following) => (
-            <Link to={`/profile/${following.user}/`} key={following.user}>
+            <Link
+              to={`/profile/${following.user}/`}
+              key={following.user}
+              className="displayLinkToUserProfile"
+            >
               <div className="displayUserProfileContainer">
                 <DisplayUser
                   picture={following.picture}
                   username={following.username}
-                  className="displayLinkToUserProfile"
                 />
               </div>
             </Link>
