@@ -59,8 +59,7 @@ function AboutUs() {
           <div className="developerInfo">
           <h2 className='aboutusTitle'>Luis Payan</h2>
             <p>
-              I'm a software engineer who is passionate about coding, and learning more each day, and each project to improve on my overall skills to become better than I was.
-              Outside of work, I like to cook, enjoy traveling, and site seeing.
+              I'm a software engineer who is passionate about coding, and learning more each day, and each project to improve on my overall skills to become better.
             </p>
             <h2 className='aboutusSkill'>Skills</h2>
             <p>
@@ -70,8 +69,6 @@ function AboutUs() {
               <p>I am always on time with communication, punctual when in comes to work.</p>
               <p className='skillName'><strong>Adaptabilty:</strong></p>
               <p>I am a person that adapts when confronted with complex problems, I will find a way to understand, and solve the problem presented to me</p>
-              <p className='skillName'><strong>Styling:</strong></p>
-              <p>I like to style, and make the design on a website look unique and learn as I go.</p>
             </p>
           </div>
         </div>
