@@ -5,7 +5,7 @@ import "./editUser.css";
 
 function EditUser({ profile }) {
   const navigate = useNavigate();
-
+  
   //sets up State for editable user fields
   const [updatedUser, setUpdatedUser] = useState({
     first_name: "",

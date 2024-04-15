@@ -11,23 +11,22 @@ function Profile({ profile, myProfile, user }) {
   const [viewedProfile, setViewedProfile] = useState({});
   const [runsToggle, setRunsToggle] = useState(false);
   const [key, setKey] = useState(0);
-  const [toggle, setToggle] = useState(0)
-
+  const [toggle, setToggle] = useState(0);
 
   const { profileId } = useParams();
 
   useEffect(() => {
     getUserProfile();
-  }, []);
+  }, [profileId]);
 
   useEffect(() => {
     fetchUserRuns();
   }, [runsToggle]);
 
-    //Will rerender state when comment is added to render the correct comment length
-    useEffect(() => {
-      fetchUserRuns()
-    },[toggle])
+  //Will rerender state when comment is added to render the correct comment length
+  useEffect(() => {
+    fetchUserRuns();
+  }, [toggle]);
 
   const getUserProfile = async () => {
     const response = await getUser(profileId);
@@ -44,8 +43,8 @@ function Profile({ profile, myProfile, user }) {
     <div key={key} className="profileContainer">
       <ProfileComponent profile={profile} />
       <div className="profileRunLengthContainer">
-        <h2>Total Runs</h2> 
-        <span className='runLength'> {Runs.length}</span>
+        <h2>Total Runs</h2>
+        <span className="runLength"> {Runs.length}</span>
       </div>
       {Runs.map((Run) => (
         <Map
@@ -65,3 +64,28 @@ function Profile({ profile, myProfile, user }) {
 }
 
 export default Profile;
+
+// <<<<<<< Updated upstream
+//       <ProfileComponent profile={profile} />
+//       <div className="profileRunLengthContainer">
+//         <h2>Total Runs</h2>
+//         <span className='runLength'> {Runs.length}</span>
+//       </div>
+// =======
+//       <ProfileComponent profile={myProfile} />
+// >>>>>>> Stashed changes
+//       {Runs.map((Run) => (
+//         <Map
+//           className="userRuns"
+//           Run={Run}
+//           user={user}
+//           setKey={setKey}
+//           setToggle={setToggle}
+//           runsToggle={runsToggle}
+//           setRunsToggle={setRunsToggle}
+//           myProfile={myProfile}
+//           key={Run.id}
+//         />
+//       ))}
+//     </div>
+//   );
