@@ -18,7 +18,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain; 
-    height: 15vh;
+    height: 20vh;
     aspect-ratio: 1/1;
     border: none;
     width: auto;
@@ -29,7 +29,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    height: 3vh;
+    height: 4vh;
     margin-left: 13px;
     aspect-ratio: 1/1;
     background-color: #50A5B1;
@@ -41,7 +41,7 @@
 .headerLogoutBtn {
     display: flex;
     align-items: center;
-    height: 7vh;
+    height: 10vh;
     aspect-ratio: 1/1;
     background-color: #50A5B1;
     color: white;
@@ -49,6 +49,7 @@
     text-decoration: none;
     border: none;
     width: auto;
+    font-size: 20px;
 }
 
 .headerBtn {
@@ -61,4 +62,71 @@
 
 .orangeAboutUs{
     background-image: url("../../../public/Assets/aboutusorange.png");
+}
+
+@media (min-width: 700px) {
+    .headerLogoutBtn {
+        display: flex;
+        align-items: center;
+        height: 8vh;
+        aspect-ratio: 1/1;
+        background-color: #50A5B1;
+        color: white;
+        font-weight: bolder;
+        font-size: 1.8vh;
+        text-decoration: none;
+        border: none;
+        width: auto;
+    }
+
+    .headerLogoutBtn {
+        display: flex;
+        align-items: center;
+        height: 10vh;
+        aspect-ratio: 1/1;
+        background-color: #50A5B1;
+        color: white;
+        font-weight: bolder;
+        text-decoration: none;
+        border: none;
+        width: auto;
+        font-size: 26px;
+    }
+}
+
+@media (min-width: 900px) {
+    .headerLogoutBtn {
+        display: flex;
+        align-items: center;
+        height: 10vh;
+        aspect-ratio: 1/1;
+        background-color: #50A5B1;
+        color: white;
+        font-weight: bolder;
+        font-size: 1.8vh;
+        text-decoration: none;
+        border: none;
+        width: auto;
+    }
+    .headerLogo {
+
+        height: 20vh;
+        aspect-ratio: 1/1;
+        border: none;
+        width: auto;
+    }
+
+    .headerLogoutBtn {
+        display: flex;
+        align-items: center;
+        height: 10vh;
+        aspect-ratio: 1/1;
+        background-color: #50A5B1;
+        color: white;
+        font-weight: bolder;
+        text-decoration: none;
+        border: none;
+        width: auto;
+        font-size: 32px;
+    }
 }

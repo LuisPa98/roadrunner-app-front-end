@@ -61,3 +61,21 @@
  .orangeProfile {
     background-image: url("../../../public/Assets/Profileorange.png");
 }
+
+@media (min-width: 900px) {
+    
+    .navBarHome {
+        height: 95px;
+    }
+    .navBarRun {
+        height: 95px;
+    }
+    
+    .navBarSearch {
+        height: 95px;
+    }
+    
+    .navBarProfile {
+        height: 75px;
+    }
+}
