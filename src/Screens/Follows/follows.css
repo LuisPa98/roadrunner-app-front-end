@@ -7,3 +7,23 @@
     transform: translate(-50%, -50%);
     overflow: scroll;
 }
+
+.followScreenButtonsContainer{
+    display: flex;
+    justify-content: space-around;
+}
+
+.followScreenButtons {
+    color: white;
+    background-color: #1A265A;
+    font-weight: 700;
+    opacity: .8;
+    height: 40px;
+    border-style: none;
+    width: 49%;
+    letter-spacing: .5px;
+}
+
+.displayLinkToUserProfile {
+    text-decoration: none;
+}
