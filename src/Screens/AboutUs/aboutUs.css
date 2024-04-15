@@ -1,4 +1,5 @@
-.about-us-container{
+.aboutUsContainer{
+    text-align: center;
     height: 80vh;
     width: 100vw;
     position: absolute;
@@ -6,4 +7,88 @@
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: scroll;
+    overflow-x: hidden;
+}
+
+.developersSection{
+    display: flex;
+    flex-direction: column;
+}
+
+.developerInfo{
+    margin: 0 5px;
+}
+
+.skillName {
+    margin: 0;
+}
+
+.developerInfo p {
+    margin: 7px 0;
+}
+
+.developer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 3px solid black;
+    height: 66vh;
+    width: 90vw;
+    margin: 20px auto;
+}
+
+.developerImg{
+    margin-top: 5px;
+    height: 16vh;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 5px solid #1A265A;
+}
+
+.aboutusTitle{
+    margin: 8px 0 1px 0;
+}
+
+.aboutusSkill{
+    margin: 0 0 4px 0 ;
+}
+
+.skillList{
+    text-align: center;
+}
+
+@media (min-width: 600px)  {
+    .developer{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        border: 3px solid black;
+        height: 65vh;
+        width: 43vw;
+        margin: 20px auto;
+    }
+    .developersSection{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+
+
+@media   (min-width: 935px) {
+    .developer{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        border: 3px solid black;
+        height: 49vh;
+        width: 43vw;
+        margin: 20px auto;
+    }
+    .developerInfo p {
+        margin: 7px 0;
+        font-size: larger;
+    }
 }
